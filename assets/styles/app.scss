@@ -2,3 +2,8 @@
 
 @import "~bootstrap/scss/bootstrap";
 
+// Customs Styles
+
+.shadow-custom {
+    box-shadow: 0 0 1rem rgb(0 0 0 / 20%) !important;
+}
