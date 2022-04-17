@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ItemRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ItemRepository;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ItemRepository::class)
+ * @Vich\Uploadable
  */
 class Item
 {
@@ -28,9 +30,14 @@ class Item
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo;
+
+    /**
+     * @Vich\UploadableField(mapping="items", fileNameProperty="photo")
+     */
+    private $photoFile;
 
     /**
      * @ORM\Column(type="datetime")
@@ -80,6 +87,30 @@ class Item
     public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of photoFile
+     */ 
+    public function getPhotoFile()
+    {
+        return $this->photoFile;
+    }
+
+    /**
+     * Set the value of photoFile
+     *
+     * @return  self
+     */ 
+    public function setPhotoFile($photoFile)
+    {
+        $this->photoFile = $photoFile;
+
+        if ($photoFile !== null) {
+            $this->updated_at = new \DateTime();
+        }
 
         return $this;
     }

@@ -4,9 +4,10 @@ namespace App\Form;
 
 use App\Entity\Item;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ItemType extends AbstractType
 {
@@ -17,7 +18,11 @@ class ItemType extends AbstractType
                 
             ])
             ->add('description')
-            ->add('photo')
+            ->add('photoFile', VichImageType::class, [
+                'required' => true,
+                'allow_delete' => false,
+                'download_uri' => false,
+            ])
             ->add('published')
             ->add('category')
         ;
