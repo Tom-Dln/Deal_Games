@@ -16,7 +16,7 @@
 					</div>
 					<div class="card-footer d-flex justify-content-between align-items-center">
 						<small class="text-muted">{{item.published|date("m/d/Y \\à H:i")}}</small>
-						<a class="btn btn-secondary" href="#" role="button">
+						<a class="btn btn-secondary" href="{{path('app_item_show', {id:item.id})}}" role="button">
 							<i class="fa-solid fa-arrow-right-long"></i>
 						</a>
 					</div>
