@@ -6,17 +6,17 @@
 
 {% block body %}
 	<div class="row">
-		{% for i in 1..6 %}
+		{% for item in items %}
 			<div class="col-4 mb-4">
 				<div class="card h-100">
 					<img src="{{asset('images/ps5.jpg')}}" class="card-img-top" alt="...">
 					<div class="card-body">
-						<h5 class="card-title">Play Station 5</h5>
-						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam a, corrupti ad minus hic, illo vel laboriosam voluptas magnam dignissimos eos praesentium deleniti nemo exercitationem in. Doloribus mollitia enim architecto!</p>
+						<h5 class="card-title">{{item.title}}</h5>
+						<p class="card-text">{{item.description|u.truncate(150, '...')}}</p>
 					</div>
 					<div class="card-footer d-flex justify-content-between align-items-center">
-						<small class="text-muted">14/04/2022 à 12h05</small>
-						<a class="btn btn-secondary" role="button">
+						<small class="text-muted">{{item.published|date("m/d/Y \\à H:i")}}</small>
+						<a class="btn btn-secondary" href="#" role="button">
 							<i class="fa-solid fa-arrow-right-long"></i>
 						</a>
 					</div>
