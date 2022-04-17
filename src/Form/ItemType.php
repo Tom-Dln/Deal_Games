@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Item;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,17 +16,18 @@ class ItemType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                
+                'label' => 'Quel est le titre de votre annonce ?',
             ])
-            ->add('description')
+            ->add('description', TextareaType::class, [
+                'label' => 'Description de votre annonce :',
+            ])
             ->add('photoFile', VichImageType::class, [
                 'required' => true,
                 'allow_delete' => false,
                 'download_uri' => false,
             ])
-            ->add('published')
-            ->add('category')
-        ;
+            // ->add('published')
+            ->add('category');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

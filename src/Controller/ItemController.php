@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Item;
 use App\Form\ItemType;
 use App\Repository\ItemRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,6 +36,7 @@ class ItemController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $item->setPublished(new DateTime('now'));
             $itemRepository->add($item);
             return $this->redirectToRoute('app_item_index', [], Response::HTTP_SEE_OTHER);
         }
