@@ -125,6 +125,7 @@ class AppFixtures extends Fixture
             $toDatabase->setTitle($category);
             $manager->persist($toDatabase);
         }
+        
         $manager->flush();
 
         // Populating database with items
@@ -137,7 +138,6 @@ class AppFixtures extends Fixture
             $toDatabase->setPhoto($item['photo']);
 
             $category = $this->categoryRepository->findOneBy(['title'=>$item['category']]);
-
             $toDatabase->setCategory($category);
 
             $manager->persist($toDatabase);
