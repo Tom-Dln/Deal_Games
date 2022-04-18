@@ -1,21 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}
+	Inscription | DealGames
+{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+	<div class="row">
+		<div class="col-12 col-md-9 col-lg-6 mx-auto p-5 shadow-custom rounded-3">
+			{% for flash_error in app.flashes('verify_email_error') %}
+				<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+			{% endfor %}
 
-    <h1>Register</h1>
+			<h1 class="mb-4">Inscription</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+			{{ form_start(registrationForm) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+			{{ form_row(registrationForm.firstname) }}
+			{{ form_row(registrationForm.lastname) }}
+			{{ form_row(registrationForm.email) }}
+			{{ form_row(registrationForm.password) }}
+			{{ form_row(registrationForm.agreeTerms) }}
+
+			<span class="d-flex justify-content-center">
+				<button type="submit" class="btn btn-primary btn-lg mt-4">S'incrire</button>
+			</span>
+
+			{{ form_end(registrationForm) }}
+		</div>
+	</div>
+
 {% endblock %}
