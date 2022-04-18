@@ -38,7 +38,8 @@ class ItemController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $item->setPublished(new DateTime('now'));
             $itemRepository->add($item);
-            return $this->redirectToRoute('app_item_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash("success", "Félicitations ! Votre annonce \"" . $item->getTitle() . "\" a bien été publiée !");
+            return $this->redirectToRoute('app_front', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('item/new.html.twig', [
@@ -67,7 +68,8 @@ class ItemController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $itemRepository->add($item);
-            return $this->redirectToRoute('app_item_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash("success", "Félicitations ! Votre annonce \"" . $item->getTitle() . "\" a bien été modifiée !");
+            return $this->redirectToRoute('app_front', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('item/edit.html.twig', [

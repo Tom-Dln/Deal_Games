@@ -16,3 +16,14 @@
 .object-fit {
     object-fit: cover;
 }
+
+.vich-image {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.vich-image img {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+}
