@@ -84,9 +84,10 @@ class ItemController extends AbstractController
     public function delete(Request $request, Item $item, ItemRepository $itemRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$item->getId(), $request->request->get('_token'))) {
+            $this->addFlash("success", "Votre annonce \"" . $item->getTitle() . "\" a bien été supprimée !");
             $itemRepository->remove($item);
         }
 
-        return $this->redirectToRoute('app_item_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_front', [], Response::HTTP_SEE_OTHER);
     }
 }
