@@ -16,14 +16,13 @@ class FrontController extends AbstractController
      */
     public function index(ItemRepository $itemRepository, Request $request, PaginatorInterface $paginatorInterface): Response
     {
-        $items = $itemRepository->findAll();
+        $items = $itemRepository->findAllByOrderPublished();
         dump($items);
         $items = $paginatorInterface->paginate(
             $items, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
             6 /*limit per page*/
         );
-        
 
         return $this->render('front/index.html.twig', [
             'items' => $items,

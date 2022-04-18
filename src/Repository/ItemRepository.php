@@ -45,6 +45,19 @@ class ItemRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Item[] Returns an array of Item objects
+     */
+    
+    public function findAllByOrderPublished()
+    {
+        return $this->createQueryBuilder('i')
+            ->orderBy('i.published', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Item[] Returns an array of Item objects
     //  */
