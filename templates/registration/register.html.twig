@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Inscription | DealGames
+	Créer un Compte | DealGames
 {% endblock %}
 
 {% block body %}
@@ -11,7 +11,7 @@
 				<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 			{% endfor %}
 
-			<h1 class="mb-4">Inscription</h1>
+			<h1 class="mb-4">Créer un Compte</h1>
 
 			{{ form_start(registrationForm) }}
 
@@ -22,7 +22,7 @@
 			{{ form_row(registrationForm.agreeTerms) }}
 
 			<span class="d-flex justify-content-center">
-				<button type="submit" class="btn btn-primary btn-lg mt-4">S'incrire</button>
+				<button type="submit" class="btn btn-primary btn-lg mt-4">Créer un Compte</button>
 			</span>
 
 			{{ form_end(registrationForm) }}

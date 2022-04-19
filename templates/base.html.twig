@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Titre non défini !
+			{% block title %}
+				Titre non défini !
 			{% endblock %}
 		</title>
 		<link
@@ -18,12 +19,13 @@
 			{% include "_nav.html.twig" %}
 		</header>
 		<main>
-            <div class="container py-5">
-			    {% block body %}{% endblock %}
-            </div>
-		</main>
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
-	</body>
-</html>
+			<div class="container py-5">
+				{% block body %}
+				{% endblock %}
+			</div>
+			</main>
+			{% block javascripts %}
+				{{ encore_entry_script_tags('app') }}
+			{% endblock %}
+		</body>
+	</html>
