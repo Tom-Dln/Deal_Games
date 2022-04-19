@@ -31,6 +31,8 @@ class ItemController extends AbstractController
      */
     public function new(Request $request, ItemRepository $itemRepository): Response
     {
+        $this->denyAccessUnlessGranted("ROLE_USER");
+
         $item = new Item();
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
@@ -63,6 +65,8 @@ class ItemController extends AbstractController
      */
     public function edit(Request $request, Item $item, ItemRepository $itemRepository): Response
     {
+        $this->denyAccessUnlessGranted("ITEM_EDIT", $item);
+
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
 
@@ -83,6 +87,8 @@ class ItemController extends AbstractController
      */
     public function delete(Request $request, Item $item, ItemRepository $itemRepository): Response
     {
+        $this->denyAccessUnlessGranted("ITEM_DELETE", $item);
+
         if ($this->isCsrfTokenValid('delete'.$item->getId(), $request->request->get('_token'))) {
             $this->addFlash("success", "Votre annonce \"" . $item->getTitle() . "\" a bien été supprimée !");
             $itemRepository->remove($item);
