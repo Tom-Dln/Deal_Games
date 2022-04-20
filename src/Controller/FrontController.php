@@ -50,6 +50,7 @@ class FrontController extends AbstractController
 
         return $this->render('front/index.html.twig', [
             'items' => $items,
+            'front_index_title' => "Annonces pour \"" . $category->getTitle() . "\" : ",
         ]);
     }
 }
