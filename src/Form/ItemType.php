@@ -29,10 +29,6 @@ class ItemType extends AbstractType
                 'download_uri' => false,
             ])
             ->add('category');
-            // ->add('category', ChoiceType::class, [
-            //     'label' => 'Catégorie :',
-            //     'choices' => []
-            // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
