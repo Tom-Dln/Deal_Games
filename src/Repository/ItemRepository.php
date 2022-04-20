@@ -48,7 +48,6 @@ class ItemRepository extends ServiceEntityRepository
     /**
      * @return Item[] Returns an array of Item objects
      */
-
     public function findAllItemsOrderByPublished()
     {
         return $this->createQueryBuilder('i')
@@ -57,11 +56,28 @@ class ItemRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return Item[] Returns an array of Item objects
+     */
     public function findItemsByCategoryOrderByPublished($value)
     {
         return $this->createQueryBuilder('i')
             ->innerJoin('i.category', 'c')
             ->andWhere('c.title = :val')
+            ->setParameter('val', $value)
+            ->orderBy('i.published', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Item[] Returns an array of Item objects
+     */
+    public function findItemsByUserOrderByPublished($value)
+    {
+        return $this->createQueryBuilder('i')
+            ->innerJoin('i.owner', 'u')
+            ->andWhere('u.id = :val')
             ->setParameter('val', $value)
             ->orderBy('i.published', 'DESC')
             ->getQuery()

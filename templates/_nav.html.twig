@@ -21,13 +21,28 @@
 			<hr class="d-lg-none">
 			<ul class="navbar-nav">
 				{% if app.user %}
-					<li class="nav-item">
-						<a class="nav-link" href="#">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="{{ path('app_account') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<i class="fa-solid fa-circle-user"></i>
 							{{ app.user.firstname }}
 							{{ app.user.lastname }}
 						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li>
+								<a class="dropdown-item" href="{{ path('app_account_profil') }}">Mes Informations</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_account_items') }}">Mes Annonces</a>
+							</li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('app_logout') }}">Se Déconnecter</a>
+							</li>
+						</ul>
 					</li>
+
 				{% else %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_login') }}">

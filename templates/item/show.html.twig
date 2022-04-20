@@ -20,7 +20,6 @@
 				<p>
 					Mis en ligne le
 					{{ item.published|date("d/m/Y \\à H:i") }}
-					par XXXXXXXX
 				</p>
 				<div class="d-flex">
 					{% if is_granted("ITEM_EDIT", item) %}
