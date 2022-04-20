@@ -28,8 +28,9 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Adresse email',
-            ])
-            ->add('agreeTerms', CheckboxType::class, [
+            ]);
+        if (!$options['edit']) {
+            $builder->add('agreeTerms', CheckboxType::class, [
                 'label' => 'J\'accepte les Conditions Générales d\'Utilisation et la Politique de Confidentialité.',
                 'mapped' => false,
                 'constraints' => [
@@ -38,30 +39,32 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'invalid_message' => 'Les mots de passe doivent être identiques.',
-                'first_options' => ['label' => 'Mot de Passe'],
-                'second_options' => ['label' => 'Confirmez votre Mot de Passe'],
-                'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer un mot de passe.',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit comporter au moins {{ limit }} caractères.',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-            ]);
+                ->add('password', RepeatedType::class, [
+                    'type' => PasswordType::class,
+                    'invalid_message' => 'Les mots de passe doivent être identiques.',
+                    'first_options' => ['label' => 'Mot de Passe'],
+                    'second_options' => ['label' => 'Confirmez votre Mot de Passe'],
+                    'attr' => ['autocomplete' => 'new-password'],
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Veuillez entrer un mot de passe.',
+                        ]),
+                        new Length([
+                            'min' => 6,
+                            'minMessage' => 'Votre mot de passe doit comporter au moins {{ limit }} caractères.',
+                            // max length allowed by Symfony for security reasons
+                            'max' => 4096,
+                        ]),
+                    ],
+                ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'edit' => false,
         ]);
     }
 }

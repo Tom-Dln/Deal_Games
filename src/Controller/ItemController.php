@@ -39,6 +39,7 @@ class ItemController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $item->setPublished(new DateTime('now'));
+            $item->setOwner($this->getUser());
             $itemRepository->add($item);
             $this->addFlash("success", "Félicitations ! Votre annonce \"" . $item->getTitle() . "\" a bien été publiée !");
             return $this->redirectToRoute('app_front', [], Response::HTTP_SEE_OTHER);
